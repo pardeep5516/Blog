@@ -24,6 +24,7 @@ const newContactController = require("./controller/newContact");
 const Post = require("./database/models/postSchema");
 const User = require("./database/models/userSchema");
 const { use } = require("passport");
+const Comment = require("./database/models/comment");
 
 const app = express();
 
@@ -98,8 +99,15 @@ app.post("/login", userLiginController);
 app.post("/contact", newContactController);
 
 //!comment
-app.post("/comment", (req, res) => {
-  console.log(req.body);
+app.post("/posts/comments", (req, res) => {
+  Comment.create(req.body)
+    .then((comment) => {
+      console.log(comment);
+      res.redirect(`/`);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 });
 
 app.listen(process.env.PORT, function () {

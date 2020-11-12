@@ -37,43 +37,48 @@
         <p><%= description %></p>
 
         <div class="pt-5 mt-5">
-          <h3 class="mb-5">1 Comments</h3>
-          <ul class="comment-list">
-            <li class="comment">
-              <div class="vcard bio">
-                <img src="https://t3.ftcdn.net/jpg/02/95/65/16/240_F_295651661_Kih7iNhJM9hSpyqWdUngcoxvNzAA3ktE.jpg" alt="Image placeholder" />
-              </div>
-              <div class="comment-body">
-                <h3>John Doe</h3>
-                <div class="meta mb-3">November 13, 2019 at 2:21pm</div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-                  autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-                  voluptas earum impedit necessitatibus, nihil?
-                </p>
-                <p><a href="#" class="reply">Reply</a></p>
-              </div>
-            </li>
-          </ul>
+          <h3 class="mb-5"><%= comments.length %> Comments</h3>
           <!-- END comment-list -->
+
+					<% comments.forEach((comment)=>{ %>
+            <ul class="comment-list">
+              <li class="comment">
+                <div class="vcard bio">
+                  <img src="https://t3.ftcdn.net/jpg/02/95/65/16/240_F_295651661_Kih7iNhJM9hSpyqWdUngcoxvNzAA3ktE.jpg" alt="Image placeholder" />
+                </div>
+                <div class="comment-body">
+                  <h3><%= comment.title %></h3>
+                  <div class="meta mb-3">
+
+											<p class="mb-0"><%= comment.createdAt.toDateString() %></p>
+
+
+                  </div>
+                  <p>
+                   <%= comment.content %>
+                  </p>
+                  <p><a href="#" class="reply">Reply</a></p>
+                </div>
+              </li>
+            </ul>
+  				<%	}) %> 
+
 
           <div class="comment-form-wrap pt-5">
             <h3 class="mb-5">Leave a comment</h3>
-            <form action="/comment" method="POST" class="p-5 bg-light">
+            <form action="/posts/comments" method="POST" class="p-5 bg-light">
+              <input type="hidden" value="<%= id %>" name="postId">
+
               <div class="form-group">
                 <label for="name">Name *</label>
-                <input type="text" name="name" class="form-control" id="name" />
+                <input type="text" name="title" class="form-control" id="name" />
               </div>
-              <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" name="email" class="form-control" id="email" />
-              </div>
+              
               
               <div class="form-group">
                 <label for="message">Message</label>
                 <textarea
-                  name="message"
+                  name="content"
                   id="message"
                   cols="30"
                   rows="10"
