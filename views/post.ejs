@@ -36,6 +36,38 @@
         <h2 class="mb-3"><%= title %>></h2>
         <p><%= description %></p>
 
+
+        <div class="comment-form-wrap pt-5">
+          <h3 class="mb-5">Leave a comment</h3>
+          <form action="/posts/comments" method="POST" class="p-5 bg-light">
+            <input type="hidden" value="<%= id %>" name="postId">
+
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" name="title" class="form-control" id="name" />
+            </div>
+            
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                name="content"
+                id="message"
+                cols="30"
+                rows="10"
+                class="form-control"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <input
+                type="submit"
+                value="Post Comment"
+                class="btn py-3 px-4 btn-primary"
+              />
+            </div>
+          </form>
+        </div>
+
         <div class="pt-5 mt-5">
           <h3 class="mb-5"><%= comments.length %> Comments</h3>
           <!-- END comment-list -->
@@ -64,36 +96,6 @@
   				<%	}) %> 
 
 
-          <div class="comment-form-wrap pt-5">
-            <h3 class="mb-5">Leave a comment</h3>
-            <form action="/posts/comments" method="POST" class="p-5 bg-light">
-              <input type="hidden" value="<%= id %>" name="postId">
-
-              <div class="form-group">
-                <label for="name">Name *</label>
-                <input type="text" name="title" class="form-control" id="name" />
-              </div>
-              
-              
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea
-                  name="content"
-                  id="message"
-                  cols="30"
-                  rows="10"
-                  class="form-control"
-                ></textarea>
-              </div>
-              <div class="form-group">
-                <input
-                  type="submit"
-                  value="Post Comment"
-                  class="btn py-3 px-4 btn-primary"
-                />
-              </div>
-            </form>
-          </div>
         </div>
       </div>
       <!-- .col-md-8 -->

@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
         description: post.description,
         image: post.image,
         auth: req.isAuthenticated(),
-        comments: comments,
+        comments: comments.reverse(),
       });
     });
   });

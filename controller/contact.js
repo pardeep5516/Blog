@@ -1,3 +1,3 @@
 module.exports = (req, res) => {
-  res.render("contact", {auth: req.isAuthenticated() });
+  res.render("contact", { auth: req.isAuthenticated() });
 };
