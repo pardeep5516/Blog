@@ -103,7 +103,7 @@ app.post("/posts/comments", (req, res) => {
   Comment.create(req.body)
     .then((comment) => {
       console.log(comment);
-      res.redirect(`/`);
+      res.redirect(`/${comment.postId}`);
     })
     .catch((err) => {
       console.log(err.message);
